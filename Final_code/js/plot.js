@@ -16,7 +16,7 @@ function buildBarPlot() {
 
     // Creating traces
     var trace1 = {
-        x: ['Heart Attack', 'Heart Failure', 'Hip/Knee', 'Pneumonia'],
+        x: ['Heart Attack', 'Heart Failure', 'Hip/Knee Replacement', 'Pneumonia'],
         y: [careValues[0], careValues[1], careValues[2], careValues[3]], 
         type: "bar"  
     };

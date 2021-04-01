@@ -4,14 +4,14 @@ import datetime as dt
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-import params
+# import params
 
 from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
 
-print(params.pwd)
+# print(params.pwd)
 #set up database
-rds_connection_string = f"postgres:{params.pwd}@localhost:5432/project2"
+rds_connection_string = "postgres:3411@localhost:5432/project2"
 engine = create_engine(f'postgresql://{rds_connection_string}')
 
 Base = automap_base()
@@ -164,7 +164,7 @@ def pneumonia():
     all_pn = []
     for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude  in result:
         all_pn_dict = {}
-        all_pn_dict["zip_ode"] = str(zip_code)
+        all_pn_dict["zip_code"] = str(zip_code)
         all_pn_dict["denominator"] = float(denominator)
         all_pn_dict["avg_pmt"] = float(avg_pmt)
         all_pn_dict["val_code"] = str(val_code)
@@ -234,10 +234,10 @@ def national_stats():
     for value_code,total_cases, avg_payment, max_payment, min_payment, avg_med_inc, max_med_inc, min_med_inc in result:
         all_nat_dict = {}
         all_nat_dict["Value Code"] = value_code
-        all_nat_dict["Total Cases"] = total_cases
+        all_nat_dict["Total Cases"] = float(total_cases)
         all_nat_dict["Avg Payment"] = float(avg_payment)
-        all_nat_dict["Max Payment"] = max_payment
-        all_nat_dict["Min Payment"] = min_payment
+        all_nat_dict["Max Payment"] = float(max_payment)
+        all_nat_dict["Min Payment"] = float(min_payment)
         all_nat_dict["Avg Median Income"] = float(avg_med_inc)
         all_nat_dict["Max Median Income"] = float(max_med_inc)
         all_nat_dict["Min Median Income"] = float(min_med_inc)
