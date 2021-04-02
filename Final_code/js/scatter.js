@@ -61,11 +61,13 @@ function buildScatterPlot(care) {
         .data(care_array)
         .enter()
         .append("circle")
+        .filter(d => {return d.med_inc < 200000 & d.med_inc > 0})
+        .filter(d => {return (d.denominator * d.avg_pmt) < 45000000 })
+        .attr("cx", d => { return x(d.med_inc-1); })
+        .attr("cy", d => { return y(d.denominator * d.avg_pmt-1); })
         .transition()
         .delay(function(d,i){return(i*3)})
         .duration(2000)
-        .filter(d => {return d.med_inc < 200000 & d.med_inc > 0})
-        .filter(d => {return (d.denominator * d.avg_pmt) < 45000000 })
             .attr("cx", d => { return x(d.med_inc); })
             .attr("cy", d => { return y(d.denominator * d.avg_pmt); })
             .attr("r", 4)
@@ -86,16 +88,16 @@ function buildScatterPlot(care) {
   circlesGroup.on("mouseover", function(care_array) {
     toolTip.show(care_array, this);
     d3.select(this)
-    .transition()
-    .duration(1000)
+    // .transition()
+    // .duration(1000)
     .attr("r", 7);
   })
     // on mouseout event
     .on("mouseout", function(care_array, index) {
       toolTip.hide(care_array);
       d3.select(this)
-      .transition()
-      .duration(1000)
+      // .transition()
+      // .duration(1000)
       .attr("r", 2);
     })
   });
