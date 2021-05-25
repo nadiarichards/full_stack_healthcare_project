@@ -10,7 +10,7 @@ Premise: In the wake of a global pandemic, public health and healthcare have ris
 
 ## Tools and Technology Used for Analysis
 ---
-* VSCode
+* Visual Studio Code
 * Healthcare Data CSVs
 * Python
 * Jupyter Notebook
